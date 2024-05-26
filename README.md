@@ -1,2 +1,2 @@
 # SpaceX-Launches
- Simple Astro application that consumes SpaceX Launches API
+ Simple Astro application that consumes SpaceX API
