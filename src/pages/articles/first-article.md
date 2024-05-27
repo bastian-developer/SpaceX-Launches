@@ -3,7 +3,7 @@ title: 'Content'
 layout: '../../layouts/Layout.astro'
 ---
 
-# This is a Markdown example article
+# This is a Markdown article example
 
 Nulla eu enim deserunt cillum eu velit. Mollit occaecat eiusmod veniam fugiat tempor in commodo aute adipisicing nulla exercitation. Enim consequat eu eiusmod in magna commodo cillum magna aute et magna adipisicing fugiat reprehenderit. Sint consectetur non aute ullamco cillum pariatur esse proident deserunt eu aute laboris ipsum.
 
