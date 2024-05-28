@@ -5,10 +5,13 @@ interface Props {
   success: boolean;
   flightnumber: number;
   details: string | null;
+  date: Date;
 }
 
-const { success, flightnumber, img, id, details } = Astro.props;
+const { success, flightnumber, img, id, details, date } = Astro.props;
 const launchStatus = success ? "Success" : "Fail";
+
+let formattedDate = date.toString().split('T')[0]
 ---
 
 <a
@@ -31,6 +34,10 @@ const launchStatus = success ? "Success" : "Fail";
       ]}}
       >{launchStatus}
     </span>
+
+    <p class="mb-4 font-light text-gray-400 text-right">
+      {formattedDate}
+    </p>
 
     <h2 class="my-2 text-2xl font-bold tracking-tight text-white">
       Flight #{flightnumber}

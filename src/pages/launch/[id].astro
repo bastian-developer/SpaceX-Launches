@@ -2,34 +2,54 @@
 import Layout from "../../layouts/Layout.astro"
 import { getLaunchById } from "../../services/spacex"
 import { getLatestLaunches } from "../../services/spacex";
+import { getOldestLaunches } from "../../services/spacex";
 
 const { id } = Astro.params
 
 let launch
+
 if(id) {
     launch = await getLaunchById({ id })
 }
 
-export async function getStaticPaths(){
-    const launches = await getLatestLaunches()
+
+export async function getStaticPaths() {
+    const latestLaunches = await getLatestLaunches();
+    const oldestLaunches = await getOldestLaunches();
+
+    // Fusionar los objetos dentro de cada array
+    const launches = latestLaunches.concat(oldestLaunches);
 
     return launches.map((launch) => ({
-        params: {id : launch.id}
-    }))
+        params: { id: launch.id }
+    }));
 }
+
+
+
+let date
+date = launch?.date_utc.toString().split('T')[0]
 ---
 
 <Layout title=`Launch ${id}`>
     <!--{launch?.id}-->
 <article class="flex flex-col items-center gap-y-4">
+
     <img 
     class="w-52 h-auto" 
     src={launch?.links.patch.small} 
     alt={launch?.name}
     />
+
+    <p class="mb-4 font-light text-gray-400">
+        {date}
+    </p>
+
     <h2 class="text-4xl text-white font-bold">
         Launch #{launch?.flight_number}
     </h2>
+
     <p class="text-2xl text-white font-bold m-10 px-10">{launch?.details}</p>
+    
 </article>
 </Layout>
